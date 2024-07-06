@@ -3,8 +3,6 @@ type baseType = { names: string[]; };
 export default class Box<T extends baseType> {
     private cache = new Map();
 
-    constructor(base: T) {}
-
     public add(...items: T[]) {
         items.forEach(t => t.names.forEach(name => this.cache.set(name, t)));
         return this;
@@ -21,7 +19,7 @@ export default class Box<T extends baseType> {
 
 export class BoxTest {
     constructor() {
-        new Box(new BoxTestItem())
+        new Box<BoxTestItem>()
             .add(
                 new BoxTextItem2()
             )
